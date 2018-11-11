@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Schedule</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  
+	<ion-segment *ngIf="scheduleDays" [(ngModel)]="selectedDate" (ionChange)="readByDate()">
+		<ion-segment-button *ngFor="let day of scheduleDays" value="{{day.date}}">{{day.display}}</ion-segment-button>
+	</ion-segment>
+	
+	<ion-row>
+		<ion-col>
+			<ion-select [(ngModel)]="fandom" class="fullWidthSelect orangeBottomBorder" (ionChange)="readByDate()">
+				<ion-option value='All'>All</ion-option>
+				<ion-option *ngFor="let fandom of fandomList" value="{{fandom.id}}">{{fandom.fandomName}}</ion-option>
+			</ion-select>
+		</ion-col>
+		<ion-col>
+			<ion-select [(ngModel)]="eventType" class="fullWidthSelect orangeBottomBorder" (ionChange)="readByDate()">
+				<ion-option value='All'>All</ion-option>
+				<ion-option *ngFor="let eventType of eventTypeList" value="{{eventType.id}}">{{eventType.typeName}}</ion-option>
+			</ion-select>
+		</ion-col>
+	</ion-row>
+	
+	<div [ngSwitch]="selectedDate">
+		<ng-container *ngFor="let day of scheduleDays">
+			<ion-list *ngSwitchCase="day.date">
+				<ion-item>{{day.display}}</ion-item>
+			</ion-list>
+		</ng-container>
+	</div>
+  
+</ion-content>

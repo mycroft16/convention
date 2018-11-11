@@ -1,0 +1,48 @@
+/*!
+ * Copyright 2015 Brandon Passley
+ * http://brandonpassley.com/
+ *
+ * Font Awesome Ionic Tabs
+ * Makes the awesome Ionic tabs even awesomer by adding Font Awesome Icons
+ *
+ * Use this however you see fit.
+ *  
+ * Learn more about Ionic
+ * http://ionicframework.com/
+ * 
+ * Visit Font Awesome to learn more and view license details
+ * http://fortawesome.github.io/Font-Awesome/
+ *
+ */
+
+/*----------------------------------
+Font Awesome Tab Icon Additions
+Make sure the Font Awesome CSS is included before this file
+To add more icons:
+* Find the unicode characters here: http://fortawesome.github.io/Font-Awesome/cheatsheet/
+* See if they are already included in this list
+* Name your style identical to the font awesome style, but prefix with "ion-tab-"
+* Add in two places (CSS description at top and the specific content: with the unicode) */
+
+
+@mixin makeIcon($arg, $val) {
+  .ci-#{$arg}:before ,
+  .ion-ios-ci-#{$arg}:before ,
+  .ion-ios-ci-#{$arg}-outline:before ,
+  .ion-md-ci-#{$arg}:before ,
+  .ion-md-ci-#{$arg}-outline:before  {
+    content: $val;
+    font-family: "Font Awesome 5 Pro";
+    font-size: 72%;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osc-font-smoothing: grayscale;
+  }
+}
+
+
+@include makeIcon(calendar-alt, "\f073");
+@include makeIcon(user-clock, "\f4fd");
+@include makeIcon(users-crown, "\f6a5");
+@include makeIcon(book-open, "\f518");
+@include makeIcon(podium, "\f680");
