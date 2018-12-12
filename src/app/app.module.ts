@@ -1,59 +1,56 @@
+// ANGULAR
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+
+// RXJS
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
+// IONIC
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { MyApp } from './app.component';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { UniqueDeviceID } from '@ionic-native/unique-device-id';
 
-import { EventsPage } from '../pages/events/events';
-import { GuestsPage } from '../pages/guests/guests';
-import { NewsPage } from '../pages/news/news';
-import { SchedulePage } from '../pages/schedule/schedule';
-import { ScheduleMinePage } from '../pages/schedule-mine/schedule-mine';
-import { TabsPage } from '../pages/tabs/tabs';
-import { VendorsPage } from '../pages/vendors/vendors';
-
+// THESE WILL BE REPLACED BY STORE
 import { DataService } from '../services/data.service';
 import { ScheduleService } from '../services/schedule.service';
 
-import { HttpClientModule } from '@angular/common/http';
-import { UniqueDeviceID } from '@ionic-native/unique-device-id';
-
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+// FANX
+import { MyApp } from './app.component';
+import { PAGES } from '../pages';
+import { COMPONENTS } from '../components';
+import { STORES, EFFECTS, PROVIDERS, metaReducers } from './store';
 
 @NgModule({
   declarations: [
     MyApp,
-    EventsPage,
-    GuestsPage,
-    NewsPage,
-    SchedulePage,
-    ScheduleMinePage,
-    TabsPage,
-    VendorsPage
+    ...PAGES,
+    ...COMPONENTS
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp, { tabPlacement: 'bottom', tabsHideOnSubPages: true }),
+    StoreModule.forRoot(STORES, { metaReducers }),
+    StoreDevtoolsModule.instrument(),
+    EFFECTS
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    EventsPage,
-    GuestsPage,
-    NewsPage,
-    SchedulePage,
-    ScheduleMinePage,
-    TabsPage,
-    VendorsPage
+    ...PAGES,
+    ...COMPONENTS
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    DataService,
-    ScheduleService,
     UniqueDeviceID,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    DataService, // will be removed
+    ScheduleService, // will be removed
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ...PROVIDERS
   ]
 })
 export class AppModule {}
