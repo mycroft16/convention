@@ -5,28 +5,22 @@ import { Injectable } from '@angular/core';
 import { Action, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-// import * as NotificationsActions from './notifications/notifications.actions'
-// import * as NotificationsState from './notifications/notifications.state'
 
-// import * as LoadingIndicatorActions from './loading-indicator/loading-indicator.actions'
-// import * as LoadingIndicatorState from './loading-indicator/loading-indicator.state'
+import * as AuthActions from './auth/auth.actions';
+import * as AuthState from './auth/auth.state';
 
-export type NotificationsState = NotificationsState.State;
-export type LoadingIndicatorState = LoadingIndicatorState.State;
+export type AuthState = AuthState.State;
 
 export interface ActionFactory {
-    readonly notifications: NotificationsActions.ActionFactory;
-    readonly loadingIndicator: LoadingIndicatorActions.ActionFactory;
+    readonly auth: AuthActions.ActionFactory;
 }
 
 export interface InternalActionFactory {
-    readonly notifications: NotificationsActions.InternalActionFactory;
-    readonly loadingIndicator: LoadingIndicatorState.InternalActionFactory;
+    readonly auth: AuthActions.InternalActionFactory;
 }
 
 export interface AppState {
-    readonly notifications: NotificationsState;
-    readonly loadingIndicator: LoadingIndicatorState;
+    readonly auth: AuthState;
 }
 
 export interface AppReducers {
@@ -34,8 +28,7 @@ export interface AppReducers {
 }
 
 export const reducers: AppReducers = {
-    notifications: NotificationsState.reducer,
-    loadingIndicator: LoadingIndicatorState.reducer
+    auth: AuthState.reducer
 }
 
 export type ActionFactoryMapper = (factory: ActionFactory) => Action;
@@ -90,13 +83,11 @@ export class AppStore {
     }
 
     private readonly actionFactory: ActionFactory = {
-        notifications: new NotificationsActions.ActionFactory,
-        loadingIndicator: new LoadingIndicatorActions.ActionFactory
+        auth: new AuthActions.ActionFactory
     }
 
     private readonly internalActionFactory: InternalActionFactory = {
-        notifications: new NotificationsActions.InternalActionFactory,
-        loadingIndicator: new LoadingIndicatorActions.InternalActionFactory
+        auth: new AuthActions.InternalActionFactory
     }
 
 }

@@ -6,11 +6,9 @@ import { AppState, AppStore } from './app.store';
 
 import { ApiService } from './api/api.service';
 
-// import { NotificationsEffects } from './notifications/notifications.effects'
-// import { NotificationsService } from './notifications/notifications.service'
-// import * as NotificationsState from './notifications/notifications.state'
-
-// import * as LoadingIndicatorState from './loading-indicator/loading-indicator.state'
+import { AuthEffects } from './auth/auth.effects';
+import { AuthService } from './auth/auth.service';
+import * as AuthState from './auth/auth.state';
 
 export const metaReducers: MetaReducer<AppState>[] = [
     storeFreeze
@@ -18,14 +16,14 @@ export const metaReducers: MetaReducer<AppState>[] = [
 
 export const PROVIDERS: any[] = [
     ApiService,
-    // NotificationsService,
+    AuthService,
     AppStore
 ]
 
 export const EFFECTS: ModuleWithProviders = EffectsModule.forRoot([
-    // NotificationsEffects,
+    AuthEffects
 ]);
 
 export const STORES: any = {
-    // notifications: NotificationsState.reducer,
+    auth: AuthState.reducer,
 }

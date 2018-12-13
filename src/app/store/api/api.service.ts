@@ -34,29 +34,12 @@ export class ApiService {
             body: selectedOptions.body,
             headers: selectedOptions.headers
         };
-        this.showLoadingIndicatorDependingOn(selectedOptions);
 
-        return this.http.request(method, this.urlFor(controller), requestOptions)
-            .do(
-                () => this.hideLoadingIndicatorDependingOn(selectedOptions),
-                () => this.showLoadingIndicatorDependingOn(selectedOptions)
-            );
+        return this.http.request(method, this.urlFor(controller), requestOptions);
     }
 
     private combineDefaultOptionsWith(options: ApiOptions): ApiOptions {
         return { params: {}, body: null, loadingIndicator: false, headers: this.headers(options.headerType), ...options };
-    }
-
-    private showLoadingIndicatorDependingOn(options: ApiOptions): void {
-        if (options.loadingIndicator === 'onBeforeRequest' || options.loadingIndicator === true) {
-            this.store.dispatch(factory => factory.loadingIndicator.show());
-        }
-    }
-
-    private hideLoadingIndicatorDependingOn(options: ApiOptions): void {
-        if (options.loadingIndicator === 'offAfterResponse' || options.loadingIndicator === true) {
-            this.store.dispatch(factory => factory.loadingIndicator.hide());
-        }
     }
 
     private urlFor(controller: string) {
@@ -65,7 +48,7 @@ export class ApiService {
 
     private headers(headerType: string = 'json'): HttpHeaders {
         let token: string = '';
-        token = this.store.snapshot(state => state.auth.activeToken);
+        token = this.store.snapshot(state => state.auth.authToken);
         let headers = new HttpHeaders();
         headers = headers.set('Accept', 'application/json');
 
