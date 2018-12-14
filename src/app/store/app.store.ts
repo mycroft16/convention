@@ -9,18 +9,25 @@ import { Observable } from 'rxjs';
 import * as AuthActions from './auth/auth.actions';
 import * as AuthState from './auth/auth.state';
 
+import * as ConventionsActions from './conventions/conventions.actions';
+import * as ConventionsState from './conventions/conventions.state';
+
 export type AuthState = AuthState.State;
+export type ConventionsState = ConventionsState.State;
 
 export interface ActionFactory {
     readonly auth: AuthActions.ActionFactory;
+    readonly conventions: ConventionsActions.ActionFactory;
 }
 
 export interface InternalActionFactory {
     readonly auth: AuthActions.InternalActionFactory;
+    readonly conventions: ConventionsActions.InternalActionFactory;
 }
 
 export interface AppState {
     readonly auth: AuthState;
+    readonly conventions: ConventionsState;
 }
 
 export interface AppReducers {
@@ -28,7 +35,8 @@ export interface AppReducers {
 }
 
 export const reducers: AppReducers = {
-    auth: AuthState.reducer
+    auth: AuthState.reducer,
+    conventions: ConventionsState.reducer
 }
 
 export type ActionFactoryMapper = (factory: ActionFactory) => Action;
@@ -83,11 +91,13 @@ export class AppStore {
     }
 
     private readonly actionFactory: ActionFactory = {
-        auth: new AuthActions.ActionFactory
+        auth: new AuthActions.ActionFactory,
+        conventions: new ConventionsActions.ActionFactory
     }
 
     private readonly internalActionFactory: InternalActionFactory = {
-        auth: new AuthActions.InternalActionFactory
+        auth: new AuthActions.InternalActionFactory,
+        conventions: new ConventionsActions.InternalActionFactory
     }
 
 }
