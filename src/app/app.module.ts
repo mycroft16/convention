@@ -11,7 +11,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { UniqueDeviceID } from '@ionic-native/unique-device-id';
 
 // THESE WILL BE REPLACED BY STORE
 import { DataService } from '../services/data.service';
@@ -46,7 +45,6 @@ import { STORES, EFFECTS, PROVIDERS, metaReducers } from './store';
   providers: [
     StatusBar,
     SplashScreen,
-    UniqueDeviceID,
     DataService, // will be removed
     ScheduleService, // will be removed
     {provide: ErrorHandler, useClass: IonicErrorHandler},
