@@ -43,7 +43,7 @@ export class ApiService {
     }
 
     private urlFor(controller: string) {
-        return `http://fanx.wherearethelights.com/api/${controller}.php';`
+        return `http://fanx.wherearethelights.com/api/${controller}.php`
     }
 
     private headers(headerType: string = 'json'): HttpHeaders {

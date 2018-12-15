@@ -20,6 +20,15 @@ export class AuthEffects {
             )
         );
 
+    @Effect()
+    public getLoginToken: Observable<Action> = this.actions.ofType(AuthActions.GetLoginToken.Type)
+        .pipe(
+            switchMap((action: AuthActions.GetLoginToken) =>
+                this.service.getLoginToken()
+                    .pipe(map(response => this.store.create(factory => factory.auth.getLoginTokenSuccess(response))))
+            )
+        );
+
     constructor(
         private actions: Actions,
         private store: AppStore,

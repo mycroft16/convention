@@ -11,9 +11,12 @@ export class AuthService {
         return this.apiService.get(
             'Auth/GetAuthToken',
             {
-                params: { },
-                loadingIndicator: true
+                params: { }
             }
         );
+    }
+
+    public getLoginToken(): Observable<string> {
+        return;
     }
 }
