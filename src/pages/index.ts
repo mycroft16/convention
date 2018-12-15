@@ -1,5 +1,6 @@
 import { EventsPage } from './events/events';
 import { GuestsPage } from './guests/guests';
+import { LoadingPage } from './loading/loading';
 import { NewsPage } from './news/news';
 import { SchedulePage } from './schedule/schedule';
 import { ScheduleMinePage } from './schedule-mine/schedule-mine';
@@ -9,6 +10,7 @@ import { VendorsPage } from './vendors/vendors';
 export const PAGES = [
     EventsPage,
     GuestsPage,
+    LoadingPage,
     NewsPage,
     SchedulePage,
     ScheduleMinePage,

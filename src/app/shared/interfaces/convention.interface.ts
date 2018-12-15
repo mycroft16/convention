@@ -1,3 +1,5 @@
+import { IDays } from './days.interface';
+
 export interface IConvention {
     id: number;
     conName: string;
@@ -9,8 +11,3 @@ export interface IConvention {
     status: 'Archived' | 'Current' | 'Next';
 }
 
-export interface IDays {
-    id: number;
-    date: string;
-    display: string;
-}

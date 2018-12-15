@@ -14,7 +14,11 @@ export function reducer(state: State = initialState, action: AuthActions.Any): S
     switch(action.type) {
 
         case AuthActions.GetAuthTokenSuccess.Type: {
-            return { ...state, ... { authToken: action.response } }
+            return { ...state, ...{ authToken: action.response } }
+        }
+
+        case AuthActions.SetLoginToken.Type: {
+            return { ...state, ...{ authToken: action.token } }
         }
 
         default: {
