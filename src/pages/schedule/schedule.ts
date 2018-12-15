@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { UniqueDeviceID } from '@ionic-native/unique-device-id';
 import * as moment from 'moment';
 
 import { DataService } from '../../services/data.service';
@@ -21,7 +20,7 @@ export class SchedulePage {
   eventType: string = 'All';
   fandom: string = 'All';
   
-  constructor(public navCtrl: NavController, public uniqueDeviceId: UniqueDeviceID, public dataService: DataService, public scheduleService: ScheduleService) {
+  constructor(public navCtrl: NavController, public dataService: DataService, public scheduleService: ScheduleService) {
 
   }
   
@@ -89,28 +88,11 @@ export class SchedulePage {
     });
   }
   
-  getUUID() {
-//    this.uniqueDeviceId.get()
-//      .then((uuid: any) => {
-//        console.log('uuid: ', uuid);
-//      })
-//      .catch((error: any) => {
-//        console.log('uuid ERROR: ', error);
-//      });
-    sessionStorage.setItem('uuid', '63ff9ddc-32ea-3014-3554-200901462018');
-  }
-  
   ionViewDidEnter() {
     
     this.readFandoms();
     this.readEventTypes();
     
-    if (typeof this.scheduleDays === 'undefined' || sessionStorage.getItem('selected') === null) {
-      this.readFanxes();
-    }
-    if (sessionStorage.getItem('uuid') === null) {
-      this.getUUID();
-    }
   }
 
 }
