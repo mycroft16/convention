@@ -1,10 +1,9 @@
-import 'rxjs/add/operator/take';
-import 'rxjs/add/operator/filter';
-import 'rxjs/operator/map';
 import { Injectable } from '@angular/core';
 import { Action, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-
+import 'rxjs/add/operator/take';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/map';
 
 import * as AuthActions from './auth/auth.actions';
 import * as AuthState from './auth/auth.state';
@@ -12,22 +11,29 @@ import * as AuthState from './auth/auth.state';
 import * as ConventionsActions from './conventions/conventions.actions';
 import * as ConventionsState from './conventions/conventions.state';
 
+import * as DropdownActions from './dropdowns/dropdowns.actions';
+import * as DropdownState from './dropdowns/dropdowns.state';
+
 export type AuthState = AuthState.State;
 export type ConventionsState = ConventionsState.State;
+export type DropdownState = DropdownState.State;
 
 export interface ActionFactory {
     readonly auth: AuthActions.ActionFactory;
     readonly conventions: ConventionsActions.ActionFactory;
+    readonly dropdowns: DropdownActions.ActionFactory;
 }
 
 export interface InternalActionFactory {
     readonly auth: AuthActions.InternalActionFactory;
     readonly conventions: ConventionsActions.InternalActionFactory;
+    readonly dropdowns: DropdownActions.InternalActionFactory;
 }
 
 export interface AppState {
     readonly auth: AuthState;
     readonly conventions: ConventionsState;
+    readonly dropdowns: DropdownState;
 }
 
 export interface AppReducers {
@@ -36,7 +42,8 @@ export interface AppReducers {
 
 export const reducers: AppReducers = {
     auth: AuthState.reducer,
-    conventions: ConventionsState.reducer
+    conventions: ConventionsState.reducer,
+    dropdowns: DropdownState.reducer
 }
 
 export type ActionFactoryMapper = (factory: ActionFactory) => Action;
@@ -92,12 +99,14 @@ export class AppStore {
 
     private readonly actionFactory: ActionFactory = {
         auth: new AuthActions.ActionFactory,
-        conventions: new ConventionsActions.ActionFactory
+        conventions: new ConventionsActions.ActionFactory,
+        dropdowns: new DropdownActions.ActionFactory,
     }
 
     private readonly internalActionFactory: InternalActionFactory = {
         auth: new AuthActions.InternalActionFactory,
-        conventions: new ConventionsActions.InternalActionFactory
+        conventions: new ConventionsActions.InternalActionFactory,
+        dropdowns: new DropdownActions.InternalActionFactory
     }
 
 }

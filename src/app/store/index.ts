@@ -14,6 +14,10 @@ import { ConventionsEffects } from './conventions/conventions.effects';
 import { ConventionsService } from './conventions/conventions.service';
 import * as ConventionsState from './conventions/conventions.state';
 
+import { DropdownEffects } from './dropdowns/dropdowns.effects';
+import { DropdownService } from './dropdowns/dropdowns.service';
+import * as DropdownState from './dropdowns/dropdowns.state';
+
 export const metaReducers: MetaReducer<AppState>[] = [
     storeFreeze
 ]
@@ -22,15 +26,18 @@ export const PROVIDERS: any[] = [
     ApiService,
     AuthService,
     ConventionsService,
+    DropdownService,
     AppStore
 ]
 
 export const EFFECTS: ModuleWithProviders = EffectsModule.forRoot([
     AuthEffects,
-    ConventionsEffects
+    ConventionsEffects,
+    DropdownEffects
 ]);
 
 export const STORES: any = {
     auth: AuthState.reducer,
-    convetions: ConventionsState.reducer
+    convetions: ConventionsState.reducer,
+    dropdowns: DropdownState.reducer
 }
