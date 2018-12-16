@@ -13,7 +13,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 // THESE WILL BE REPLACED BY STORE
-import { DataService } from '../services/data.service';
 import { ScheduleService } from '../services/schedule.service';
 
 // FANX
@@ -45,7 +44,6 @@ import { STORES, EFFECTS, PROVIDERS, metaReducers } from './store';
   providers: [
     StatusBar,
     SplashScreen,
-    DataService, // will be removed
     ScheduleService, // will be removed
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ...PROVIDERS

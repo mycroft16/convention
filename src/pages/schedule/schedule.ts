@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import * as moment from 'moment';
+import { Observable } from 'rxjs';
+import { AppStore } from '../../app/store/app.store';
+import { IEventType, IFandom } from '../../app/shared/interfaces/dropdowns.interface';
 
-import { DataService } from '../../services/data.service';
 import { ScheduleService } from '../../services/schedule.service';
 
 @Component({
@@ -15,33 +17,14 @@ export class SchedulePage {
   scheduleDays: any;
   selectedDate: string;
   
-  eventTypeList: any;
-  fandomList: any;
+  public eventTypeList: Observable<IEventType[]>;
+  public fandomList: Observable<IFandom[]>;
   eventType: string = 'All';
   fandom: string = 'All';
   
-  constructor(public navCtrl: NavController, public dataService: DataService, public scheduleService: ScheduleService) {
-
-  }
-  
-  readFandoms() {
-    this.dataService.readFandoms().subscribe((data: any) => {
-      console.log('readFandoms: ', data);
-      this.fandomList = data;
-    },
-    (err) => {
-      console.log('readFandoms ERROR: ', err);
-    });
-  }
-  
-  readEventTypes() {
-    this.dataService.readEventTypes().subscribe((data: any) => {
-      console.log('readEventTypes: ', data);
-      this.eventTypeList = data;
-    },
-    (err) => {
-      console.log('readEventTypes ERROR: ', err);
-    });
+  constructor(public navCtrl: NavController, public scheduleService: ScheduleService, private store: AppStore) {
+    this.eventTypeList = this.store.select(state => state.dropdowns.eventTypes);
+    this.fandomList = this.store.select(state => state.dropdowns.fandoms);
   }
   
   readFanxes() {
@@ -87,12 +70,13 @@ export class SchedulePage {
       console.log('read ERROR: ', err);
     });
   }
+
+  loadDropdowns() {
+    this.store.dispatch(factory => factory.dropdowns.getDropdownData());
+  }
   
   ionViewDidEnter() {
-    
-    this.readFandoms();
-    this.readEventTypes();
-    
+    this.loadDropdowns();
   }
 
 }

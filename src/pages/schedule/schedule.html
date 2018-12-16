@@ -14,13 +14,13 @@
 		<ion-col>
 			<ion-select [(ngModel)]="fandom" class="fullWidthSelect orangeBottomBorder" (ionChange)="readByDate()">
 				<ion-option value='All'>All</ion-option>
-				<ion-option *ngFor="let fandom of fandomList" value="{{fandom.id}}">{{fandom.fandomName}}</ion-option>
+				<ion-option *ngFor="let fandom of (fandomList | async)" value="{{fandom.id}}">{{fandom.fandomName}}</ion-option>
 			</ion-select>
 		</ion-col>
 		<ion-col>
 			<ion-select [(ngModel)]="eventType" class="fullWidthSelect orangeBottomBorder" (ionChange)="readByDate()">
 				<ion-option value='All'>All</ion-option>
-				<ion-option *ngFor="let eventType of eventTypeList" value="{{eventType.id}}">{{eventType.typeName}}</ion-option>
+				<ion-option *ngFor="let eventType of (eventTypeList | async)" value="{{eventType.id}}">{{eventType.typeName}}</ion-option>
 			</ion-select>
 		</ion-col>
 	</ion-row>
