@@ -43,7 +43,7 @@ export class ApiService {
     }
 
     private urlFor(controller: string) {
-        return `http://fanx.wherearethelights.com/api/${controller}.php`
+        return `http://fanx.wherearethelights.com/api/${controller}.php`;
     }
 
     private headers(headerType: string = 'json'): HttpHeaders {
@@ -56,9 +56,9 @@ export class ApiService {
             headers = headers.set('Authorization', token);
         }
 
-        switch(headerType) {
+        switch (headerType) {
             case 'json':
-                headers = headers.set('Content-Type', 'application.json');
+                headers = headers.set('Content-Type', 'application/json');
                 headers = headers.set('Accept', 'application/json');
                 break;
             case 'download':
@@ -74,7 +74,6 @@ export class ApiService {
             default:
                 headers = headers.set('Accept', 'application/json');
                 break;
-
         }
 
         return headers;
