@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { ApiService } from '../api/api.service';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class AuthService {
@@ -16,7 +17,19 @@ export class AuthService {
         );
     }
 
-    public getLoginToken(): Observable<string> {
-        return;
+    public getLoginToken(username: string, password: string): Observable<string> {
+        return this.apiService.get(
+            'Auth/GetLoginToken',
+            {
+                params: { username: username, password: password }
+            }
+        ).pipe(
+            map(response => this.storeToken(response))
+        );
+    }
+
+    storeToken(response: string) {
+        localStorage.setItem('token', response);
+        return response;
     }
 }

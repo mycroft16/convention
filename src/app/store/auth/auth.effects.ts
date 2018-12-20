@@ -25,7 +25,7 @@ export class AuthEffects {
     public getLoginToken: Observable<Action> = this.actions.ofType(AuthActions.GetLoginToken.Type)
         .pipe(
             switchMap((action: AuthActions.GetLoginToken) =>
-                this.service.getLoginToken()
+                this.service.getLoginToken(action.username, action.password)
                     .pipe(map(response => this.store.create(factory => factory.auth.getLoginTokenSuccess(response))))
             )
         );

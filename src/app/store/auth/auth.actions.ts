@@ -32,25 +32,25 @@ export class GetAuthToken implements Action {
 export class GetAuthTokenSuccess implements Action {
     public static readonly Type = '[Auth] Get Auth Token Success';
     public readonly type = GetAuthTokenSuccess.Type;
-    constructor(public readonly response) { }
+    constructor(public readonly response: string) { }
 }
 
 export class GetLoginToken implements Action {
     public static readonly Type = '[Login] Get Login Token';
     public readonly type = GetLoginToken.Type;
-    constructor(public readonly username, public readonly password) { }
+    constructor(public readonly username: string, public readonly password: string) { }
 }
 
 export class GetLoginTokenSuccess implements Action {
     public static readonly Type = '[Login] Get Login Token Success';
     public readonly type = GetLoginTokenSuccess.Type;
-    constructor(public readonly response) { }
+    constructor(public readonly response: string) { }
 }
 
 export class SetLoginToken implements Action {
     public static readonly Type = '[Login] Set Login Token';
     public readonly type = SetLoginToken.Type;
-    constructor(public readonly token) { }
+    constructor(public readonly token: string) { }
 }
 
 export type Any = GetAuthToken | GetAuthTokenSuccess | GetLoginToken | GetLoginTokenSuccess | SetLoginToken;
