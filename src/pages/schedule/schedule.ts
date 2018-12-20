@@ -72,7 +72,11 @@ export class SchedulePage {
   }
 
   loadDropdowns() {
-    this.store.dispatch(factory => factory.dropdowns.getDropdownData());
+    if (this.store.snapshot(state => state.dropdowns.eventTypes) === null ||
+        this.store.snapshot(state => state.dropdowns.fandoms) === null)
+    {
+      this.store.dispatch(factory => factory.dropdowns.getDropdownData());
+    }
   }
   
   ionViewDidEnter() {
