@@ -26,11 +26,11 @@ To add more icons:
 
 
 @mixin makeIcon($arg, $val) {
-  .ci-#{$arg}:before ,
-  .ion-ios-ci-#{$arg}:before ,
-  .ion-ios-ci-#{$arg}-outline:before ,
-  .ion-md-ci-#{$arg}:before ,
-  .ion-md-ci-#{$arg}-outline:before  {
+  .fa-#{$arg}:before ,
+  .ion-ios-fa-#{$arg}:before ,
+  .ion-ios-fa-#{$arg}-outline:before ,
+  .ion-md-fa-#{$arg}:before ,
+  .ion-md-fa-#{$arg}-outline:before  {
     content: $val;
     font-family: "Font Awesome 5 Pro";
     font-size: 72%;
@@ -42,7 +42,7 @@ To add more icons:
 
 
 @include makeIcon(calendar-alt, "\f073");
-@include makeIcon(user-clock, "\f4fd");
 @include makeIcon(users-crown, "\f6a5");
 @include makeIcon(book-open, "\f518");
 @include makeIcon(podium, "\f680");
+@include makeIcon(bars, "\f0c9");
