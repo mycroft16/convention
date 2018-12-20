@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 @Component({
   selector: 'page-vendors',
-  templateUrl: 'vendors.html'
+  templateUrl: 'vendors.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class VendorsPage {
 

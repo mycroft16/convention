@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 @Component({
   selector: 'page-guests',
-  templateUrl: 'guests.html'
+  templateUrl: 'guests.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GuestsPage {
 

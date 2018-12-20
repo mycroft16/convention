@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 @Component({
   selector: 'page-events',
-  templateUrl: 'events.html'
+  templateUrl: 'events.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EventsPage {
 

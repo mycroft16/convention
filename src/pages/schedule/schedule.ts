@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import * as moment from 'moment';
 import { Observable } from 'rxjs';
@@ -9,7 +9,8 @@ import { ScheduleService } from '../../services/schedule.service';
 
 @Component({
   selector: 'page-schedule',
-  templateUrl: 'schedule.html'
+  templateUrl: 'schedule.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SchedulePage {
 

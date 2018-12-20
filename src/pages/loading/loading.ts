@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AppStore } from '../../app/store/app.store';
 import { TabsPage } from '../tabs/tabs';
 
 @Component({
   selector: 'page-loading',
-  templateUrl: 'loading.html'
+  templateUrl: 'loading.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoadingPage {
 
